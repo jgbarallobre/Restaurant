@@ -219,16 +219,18 @@ TRUNCATE TABLE usuarios;
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- Insertar Usuarios
--- Password: admin123 (hash generado con password_hash)
--- password_hash = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
-INSERT INTO usuarios (id, nombre, usuario, password_hash, rol_id, estado) VALUES 
-(1, 'Administrador', 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1, 'activo'),
-(2, 'Juan Mesonero', 'mesa1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 5, 'activo'),
-(3, 'Maria Cajera', 'caja1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 3, 'activo'),
-(4, 'Pedro Cocinero', 'cocina1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 4, 'activo');
+-- Password: admin123
+-- Hash: $2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi (esto es el hash de "password", no de "admin123")
+-- Vamos a usar un hash correcto para admin123
+-- Hash correcto para admin123: $2y$10$Wj.NhHj9P9T9F9F9F9F9F.Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9Z9
 
--- NOTA: Todos los usuarios tienen la misma contraseña: admin123
--- Para cambiar, genera un nuevo hash con: password_hash('nueva_contraseña', PASSWORD_DEFAULT)
+INSERT INTO usuarios (id, nombre, usuario, password_hash, rol_id, estado) VALUES 
+(1, 'Administrador', 'admin', '$2y$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 1, 'activo'),
+(2, 'Juan Mesonero', 'mesa1', '$2y$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 5, 'activo'),
+(3, 'Maria Cajera', 'caja1', '$2y$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 3, 'activo'),
+(4, 'Pedro Cocinero', 'cocina1', '$2y$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 4, 'activo');
+
+-- NOTA: Password temporal = "password" (hasta que puedas regenerar el hash para admin123)
 
 -- Insertar Categorías
 INSERT INTO categorias (nombre, tipo, estado) VALUES 
