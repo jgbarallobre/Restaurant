@@ -1,0 +1,29 @@
+# Sistema Operativo
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/*.log
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Base de datos local (no subir)
+*.sql.gz
+
+# Configuración local
+config/local.php
+
+# Composer
+/vendor/
+
+# Cache
+/cache/
