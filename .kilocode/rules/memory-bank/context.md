@@ -4,68 +4,62 @@
 
 **Proyecto**: Sistema POS para Restaurante
 **Stack**: PHP 8+ (OOP) + MySQL + Bootstrap 5
-**Estado**: ✅ Estructura base completada
+**Estado**: ✅ Módulo de autenticación y usuarios completado
 
 ## Recently Completed
 
-- [x] Estructura de carpetas del proyecto PHP
-- [x] Schema SQL con 11 tablas y seeders
-- [x] Conexión a base de datos (PDO Singleton)
-- [x] Sistema de autenticación (login/logout)
-- [x] Dashboard con estadísticas
-- [x] Módulo de Pedidos (crear, ver, cambiar estado)
-- [x] Módulo de Productos
-- [x] Módulo de Mesas
-- [x] Módulo de Inventario (entradas, mermas)
-- [x] Módulo de Reportes
-- [x] Configuración de tasa de cambio
+- [x] Sesiones seguras con timeout de 30 minutos
+- [x] Login con diseño moderno y validación
+- [x] Logout con destrucción completa de sesión
+- [x] Sistema de permisos por rol
+- [x] Dashboard adaptativo según rol
+- [x] CRUD completo de usuarios
+- [x] Validación frontend y backend
+- [x] Log de actividades
 
-## Estructura del Proyecto
+## Archivos del Módulo de Autenticación
 
-```
-restaurant-pos/
-├── app/
-│   ├── config/
-│   │   ├── config.php      # Configuración global
-│   │   └── database.php    # Conexión PDO
-│   └── controllers/
-│       ├── auth/           # Login, Logout
-│       └── pedidos/        # Guardar pedido
-├── public/
-│   ├── index.php           # Login
-│   ├── bootstrap.php       # Autoload
-│   ├── dashboard/          # Dashboard principal
-│   ├── pedidos/           # Listado, nuevo, ver
-│   ├── productos/         # Gestión productos
-│   ├── mesas/              # Gestión mesas
-│   ├── inventario/        # Control inventario
-│   ├── reportes/          # Reportes ventas
-│   └── configuracion/     # Tasa cambio
-└── sql/
-    └── schema.sql          # Base de datos + seeders
-```
+| Archivo | Descripción |
+|---------|-------------|
+| `config/session.php` | Configuración de sesiones seguras |
+| `includes/auth.php` | Funciones de autenticación |
+| `includes/permissions.php` | Sistema de permisos |
+| `login.php` | Formulario de login |
+| `logout.php` | Cerrar sesión |
+| `dashboard.php` | Panel principal según rol |
+| `usuarios/index.php` | Listado de usuarios |
+| `usuarios/acciones.php` | CRUD de usuarios |
+| `usuarios/validar_usuario.php` | Validación AJAX |
+| `assets/css/style.css` | Estilos personalizados |
+| `assets/js/login.js` | Validaciones login |
+| `assets/js/main.js` | Funciones globales |
+| `assets/js/usuarios.js` | Validaciones usuarios |
 
-## Lógica de Negocio Implementada
+## Roles y Permisos
 
-1. **Tipos de Productos**: materia_prima, terminado, compuesto
-2. **Venta de Compuestos**: Descuenta automáticamente materias primas según receta
-3. **Stock**: Validación antes de venta, alertas de stock bajo
-4. **Moneda**: USD como base, visualización en Bs con tasa configurable
+| Rol | Permisos |
+|-----|----------|
+| Administrador | Acceso total |
+| Mesonero | Pedidos, mesas |
+| Cajero | Cobrar, caja, reportes |
+| Cocina | Ver pedidos, preparar |
 
-## Credenciales de Acceso
+## Usuarios de Prueba
 
-- Usuario: `admin`
-- Contraseña: `admin123`
+| Usuario | Password | Rol |
+|---------|----------|-----|
+| admin | admin123 | Administrador |
+| mesa1 | admin123 | Mesonero |
+| caja1 | admin123 | Cajero |
+| cocina1 | admin123 | Cocinero |
 
 ## Pendiente
 
-- [ ] Controlador para crear productos
-- [ ] Ver detalles de pedido desde listado
-- [ ] Impresión de tickets
+- [ ] Integrar módulos existentes con nuevo sistema de permisos
 
 ## Session History
 
 | Date | Changes |
 |------|---------|
-| 2026-03-14 | Estructura base del sistema POS Restaurant |
+| 2026-03-14 | Módulo de autenticación y usuarios completo |
 

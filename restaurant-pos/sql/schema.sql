@@ -192,17 +192,43 @@ CREATE INDEX idx_movimientos_producto ON movimientos_inventario(producto_id);
 -- DATOS INICIALES - SEEDERS
 -- =====================================================
 
--- Insertar Roles
-INSERT INTO roles (nombre, permisos_json) VALUES 
-('SuperAdmin', '{"todos": true}'),
-('Admin', '{"usuarios": ["ver", "crear", "editar"], "productos": ["ver", "crear", "editar", "eliminar"], "pedidos": ["ver", "crear", "editar"], "reportes": ["ver"], "configuracion": ["ver", "editar"]}'),
-('Cajero', '{"pedidos": ["ver", "crear", "editar", "pagar"], "reportes": ["ver"]}'),
-('Cocinero', '{"pedidos": ["ver", "actualizar_estado"], "productos": ["ver"], "inventario": ["ver"]}');
+-- =====================================================
+-- ROLES Y PERMISOS
+-- =====================================================
 
--- Insertar Usuario Admin (password: admin123)
--- password_hash = password_hash('admin123', PASSWORD_DEFAULT)
-INSERT INTO usuarios (nombre, usuario, password_hash, rol_id, estado) VALUES 
-('Administrador', 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1, 'activo');
+-- Eliminar roles existentes para recrear
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE roles;
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- Insertar Roles con permisos JSON
+INSERT INTO roles (id, nombre, permisos_json) VALUES 
+(1, 'Administrador', '{"todos": true}'),
+(2, 'Admin', '{"ver_usuarios": true, "crear_usuarios": true, "editar_usuarios": true, "ver_productos": true, "crear_productos": true, "editar_productos": true, "eliminar_productos": true, "ver_pedidos": true, "crear_pedidos": true, "editar_pedidos": true, "cobrar_pedidos": true, "ver_mesas": true, "gestionar_mesas": true, "ver_inventario": true, "gestionar_inventario": true, "ver_reportes": true, "ver_caja": true, "ver_configuracion": true, "modificar_tasa": true}'),
+(3, 'Cajero', '{"ver_pedidos": true, "crear_pedidos": true, "cobrar_pedidos": true, "ver_caja": true, "ver_reportes": true, "ver_productos": true, "ver_mesas": true}'),
+(4, 'Cocinero', '{"ver_pedidos": true, "editar_pedidos": true, "ver_inventario": true, "ver_productos": true}'),
+(5, 'Mesonero', '{"ver_pedidos": true, "crear_pedidos": true, "editar_pedidos": true, "ver_mesas": true, "gestionar_mesas": true, "ver_productos": true}');
+
+-- =====================================================
+-- USUARIOS
+-- =====================================================
+
+-- Eliminar usuarios existentes para recrear
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE usuarios;
+SET FOREIGN_KEY_CHECKS = 1;
+
+-- Insertar Usuarios
+-- Password: admin123 (hash generado con password_hash)
+-- password_hash = '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+INSERT INTO usuarios (id, nombre, usuario, password_hash, rol_id, estado) VALUES 
+(1, 'Administrador', 'admin', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 1, 'activo'),
+(2, 'Juan Mesonero', 'mesa1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 5, 'activo'),
+(3, 'Maria Cajera', 'caja1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 3, 'activo'),
+(4, 'Pedro Cocinero', 'cocina1', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 4, 'activo');
+
+-- NOTA: Todos los usuarios tienen la misma contraseña: admin123
+-- Para cambiar, genera un nuevo hash con: password_hash('nueva_contraseña', PASSWORD_DEFAULT)
 
 -- Insertar Categorías
 INSERT INTO categorias (nombre, tipo, estado) VALUES 
