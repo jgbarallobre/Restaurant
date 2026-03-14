@@ -287,12 +287,25 @@ INSERT INTO mesas (numero, capacidad, estado, ubicacion) VALUES
 -- Insertar Configuración Inicial
 INSERT INTO configuracion (clave, valor, descripcion) VALUES 
 ('tasa_cambio_dia', '446.80', 'Tasa de cambio USD a Bolivares'),
-('nombre_restaurante', 'Restaurante POS', 'Nombre del restaurante'),
-('direccion', 'Av. Principal, Ciudad', 'Dirección del restaurante'),
-('telefono', '+58 412-1234567', 'Teléfono de contacto'),
+('nombre_restaurante', 'Restaurante Demo', 'Nombre del restaurante'),
+('rif_restaurante', 'J-12345678-9', 'RIF del restaurante'),
+('direccion_restaurante', 'Av. Principal, Caracas, Venezuela', 'Dirección del restaurante'),
+('telefono_restaurante', '0412-1234567', 'Teléfono de contacto'),
+('email_restaurante', 'contacto@restaurante.com', 'Correo electrónico'),
+('mensaje_pie', 'Gracias por su visita', 'Mensaje en pie de factura'),
+('nombre_sistema', 'Sistema POS', 'Nombre del sistema'),
+('version_sistema', '1.0.0', 'Versión del sistema'),
+('timeout_sesion', '30', 'Tiempo de timeout en minutos'),
+('productos_por_pagina', '10', 'Productos por página en listados'),
 ('impuesto_porcentaje', '16', 'Porcentaje de impuesto (IVA)'),
-('iva_incluido', '1', 'Si el precio incluye IVA (1=sí, 0=no)');
+('iva_incluido', '1', 'Si el precio incluye IVA (1=sí, 0=no)'),
+('logo_restaurante', '', 'Nombre del archivo del logo');
 
--- Insertar Tasa de Cambio Inicial
+-- Insertar Tasa de Cambio Inicial + Historial de ejemplo
 INSERT INTO tasa_cambio_historico (tasa, fecha, usuario_id) VALUES 
+(430.50, DATE_SUB(CURDATE(), INTERVAL 5 DAY), 1),
+(435.00, DATE_SUB(CURDATE(), INTERVAL 4 DAY), 1),
+(440.25, DATE_SUB(CURDATE(), INTERVAL 3 DAY), 1),
+(443.00, DATE_SUB(CURDATE(), INTERVAL 2 DAY), 1),
+(445.50, DATE_SUB(CURDATE(), INTERVAL 1 DAY), 1),
 (446.80, CURDATE(), 1);
