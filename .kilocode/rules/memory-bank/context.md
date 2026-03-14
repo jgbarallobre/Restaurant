@@ -1,87 +1,71 @@
-# Active Context: Next.js Starter Template
+# Active Context: Sistema POS Restaurante (PHP)
 
 ## Current State
 
-**Template Status**: ✅ Ready for development
-
-The template is a clean Next.js 16 starter with TypeScript and Tailwind CSS 4. It's ready for AI-assisted expansion to build any type of application.
+**Proyecto**: Sistema POS para Restaurante
+**Stack**: PHP 8+ (OOP) + MySQL + Bootstrap 5
+**Estado**: ✅ Estructura base completada
 
 ## Recently Completed
 
-- [x] Base Next.js 16 setup with App Router
-- [x] TypeScript configuration with strict mode
-- [x] Tailwind CSS 4 integration
-- [x] ESLint configuration
-- [x] Memory bank documentation
-- [x] Recipe system for common features
+- [x] Estructura de carpetas del proyecto PHP
+- [x] Schema SQL con 11 tablas y seeders
+- [x] Conexión a base de datos (PDO Singleton)
+- [x] Sistema de autenticación (login/logout)
+- [x] Dashboard con estadísticas
+- [x] Módulo de Pedidos (crear, ver, cambiar estado)
+- [x] Módulo de Productos
+- [x] Módulo de Mesas
+- [x] Módulo de Inventario (entradas, mermas)
+- [x] Módulo de Reportes
+- [x] Configuración de tasa de cambio
 
-## Current Structure
+## Estructura del Proyecto
 
-| File/Directory | Purpose | Status |
-|----------------|---------|--------|
-| `src/app/page.tsx` | Home page | ✅ Ready |
-| `src/app/layout.tsx` | Root layout | ✅ Ready |
-| `src/app/globals.css` | Global styles | ✅ Ready |
-| `.kilocode/` | AI context & recipes | ✅ Ready |
-
-## Current Focus
-
-The template is ready. Next steps depend on user requirements:
-
-1. What type of application to build
-2. What features are needed
-3. Design/branding preferences
-
-## Quick Start Guide
-
-### To add a new page:
-
-Create a file at `src/app/[route]/page.tsx`:
-```tsx
-export default function NewPage() {
-  return <div>New page content</div>;
-}
+```
+restaurant-pos/
+├── app/
+│   ├── config/
+│   │   ├── config.php      # Configuración global
+│   │   └── database.php    # Conexión PDO
+│   └── controllers/
+│       ├── auth/           # Login, Logout
+│       └── pedidos/        # Guardar pedido
+├── public/
+│   ├── index.php           # Login
+│   ├── bootstrap.php       # Autoload
+│   ├── dashboard/          # Dashboard principal
+│   ├── pedidos/           # Listado, nuevo, ver
+│   ├── productos/         # Gestión productos
+│   ├── mesas/              # Gestión mesas
+│   ├── inventario/        # Control inventario
+│   ├── reportes/          # Reportes ventas
+│   └── configuracion/     # Tasa cambio
+└── sql/
+    └── schema.sql          # Base de datos + seeders
 ```
 
-### To add components:
+## Lógica de Negocio Implementada
 
-Create `src/components/` directory and add components:
-```tsx
-// src/components/ui/Button.tsx
-export function Button({ children }: { children: React.ReactNode }) {
-  return <button className="px-4 py-2 bg-blue-600 text-white rounded">{children}</button>;
-}
-```
+1. **Tipos de Productos**: materia_prima, terminado, compuesto
+2. **Venta de Compuestos**: Descuenta automáticamente materias primas según receta
+3. **Stock**: Validación antes de venta, alertas de stock bajo
+4. **Moneda**: USD como base, visualización en Bs con tasa configurable
 
-### To add a database:
+## Credenciales de Acceso
 
-Follow `.kilocode/recipes/add-database.md`
+- Usuario: `admin`
+- Contraseña: `admin123`
 
-### To add API routes:
+## Pendiente
 
-Create `src/app/api/[route]/route.ts`:
-```tsx
-import { NextResponse } from "next/server";
-
-export async function GET() {
-  return NextResponse.json({ message: "Hello" });
-}
-```
-
-## Available Recipes
-
-| Recipe | File | Use Case |
-|--------|------|----------|
-| Add Database | `.kilocode/recipes/add-database.md` | Data persistence with Drizzle + SQLite |
-
-## Pending Improvements
-
-- [ ] Add more recipes (auth, email, etc.)
-- [ ] Add example components
-- [ ] Add testing setup recipe
+- [ ] Controlador para crear productos
+- [ ] Ver detalles de pedido desde listado
+- [ ] Impresión de tickets
 
 ## Session History
 
 | Date | Changes |
 |------|---------|
-| Initial | Template created with base setup |
+| 2026-03-14 | Estructura base del sistema POS Restaurant |
+
