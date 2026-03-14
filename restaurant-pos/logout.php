@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/config/session.php';
+require_once __DIR__ . '/app/config/session.php';
 require_once __DIR__ . '/includes/auth.php';
 
 if (!verificarSesion()) {
