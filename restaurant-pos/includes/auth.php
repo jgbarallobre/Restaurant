@@ -4,8 +4,8 @@
  * Sistema POS Restaurante
  */
 
-require_once __DIR__ . '/database.php';
-require_once __DIR__ . '/session.php';
+require_once __DIR__ . '/../app/config/database.php';
+require_once __DIR__ . '/../config/session.php';
 
 /**
  * Autentica un usuario con usuario y contraseña

@@ -4,13 +4,13 @@
  * Sistema POS Restaurante
  */
 
-session_start();
-
-// Configuración de cookies de sesión seguras
+// Configuración de cookies de sesión seguras (debe estar antes de session_start)
 ini_set('session.cookie_httponly', 1);
 ini_set('session.cookie_secure', 0);
 ini_set('session.use_strict_mode', 1);
 ini_set('session.cookie_samesite', 'Strict');
+
+session_start();
 
 define('SESSION_TIMEOUT', 1800); // 30 minutos
 define('SESSION_REMEMBER', 28800); // 8 horas (si selecciona "recordarme")

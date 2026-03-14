@@ -4,7 +4,7 @@
  * Sistema POS Restaurante
  */
 
-require_once __DIR__ . '/session.php';
+require_once __DIR__ . '/../config/session.php';
 
 /**
  * Lista de permisos disponibles en el sistema
